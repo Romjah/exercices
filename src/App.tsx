@@ -4,6 +4,7 @@ import TodoList from '../src/components/TodoList'
 import CompteurDeClics from '../src/components/Compteur'
 import Home from './pages/Home';
 import './App.css';
+import ProfilUtilisateur from './components/ProfilUtilisateur';
 
 const App = () => {
   const [todos, setTodos] = useState<string[]>([]);
@@ -29,10 +30,8 @@ const App = () => {
             path="/todolist"
             element={<TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />}
           />
-          <Route
-            path="/compteur"
-            element={<CompteurDeClics />}
-          />
+          <Route path="/compteur" element={<CompteurDeClics />} />
+          <Route path="/profil/:id" element={<ProfilUtilisateur />} />
         </Routes>
       </header>
     </div>

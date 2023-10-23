@@ -17,8 +17,7 @@ const MenuHamburger = () => {
   const exerciseRoutes = [
     'todolist',
     'compteur',
-    'profil',
-    'navigation',
+    'profil/:id',
     'liste_de_produit',
     'recherche_de_films',
     'pagination',
