@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/NaviguationTabs.css';
 
 interface NavigationTabsProps {
   currentIndex: number;
@@ -22,15 +23,15 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ currentIndex, totalProf
   };
 
   return (
-    <div>
-      <button disabled={currentIndex === 0} onClick={handlePrevious}>
+    <div className="navigationTabsContainer">
+      <button className="navigationTabButton" disabled={currentIndex === 0} onClick={handlePrevious}>
         Précédent
       </button>
-      <button disabled={currentIndex === totalProfiles - 1} onClick={handleNext}>
+      <button className="navigationTabButton" disabled={currentIndex === totalProfiles - 1} onClick={handleNext}>
         Suivant
       </button>
     </div>
-  );
+  );  
 };
 
 export default NavigationTabs;
