@@ -1,10 +1,13 @@
 .App {
   text-align: center;
+  font-family: 'Arial', sans-serif; /* Police moderne et propre */
+  background-color: #1a1e25; /* Fond sombre */
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  filter: drop-shadow(0 0 10px #61dafb); /* Ombre légère pour le logo */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -21,11 +24,20 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #f1f1f1; /* Un blanc cassé pour être moins agressif pour les yeux */
 }
 
 .App-link {
   color: #61dafb;
+  text-decoration: none; /* Suppression du soulignement par défaut */
+  border: 1px solid #61dafb;
+  border-radius: 5px; /* Coins arrondis pour le lien */
+  transition: background-color 0.3s; /* Transition douce pour l'effet de survol */
+}
+
+.App-link:hover {
+  background-color: #61dafb; /* Changement de la couleur de fond au survol */
+  color: #282c34; /* Changement de la couleur du texte au survol */
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +47,48 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Ajout du style pour l'icône hamburger */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 100%;
+  height: 4px;
+  background-color: #f1f1f1;
+}
+
+/* Style supplémentaire pour le contenu de la page Home */
+.home-title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.home-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+}
+
+.action-button {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #4fc3d8;
 }

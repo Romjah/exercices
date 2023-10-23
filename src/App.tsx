@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import TodoList from '../src/components/TodoList'
+import CompteurDeClics from '../src/components/Compteur'
+import Home from './pages/Home';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState<string[]>([]);
+
+  // Fonction pour ajouter une tâche
+  const addTodo = (newTodo: string) => {
+    setTodos([...todos, newTodo]);
+  };
+
+  // Fonction pour supprimer une tâche par son index
+  const deleteTodo = (index: number) => {
+    const updatedTodos = [...todos];
+    updatedTodos.splice(index, 1);
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/todolist"
+            element={<TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />}
+          />
+          <Route
+            path="/compteur"
+            element={<CompteurDeClics />}
+          />
+        </Routes>
       </header>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,44 @@
+.todo-container {
+    background-color: white;
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.todo-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.todo-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.todo-list-item {
+    margin-bottom: 15px;
+}
+
+.todo-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.todo-text {
+    color: #333;
+    font-size: 16px;
+}
+
+.todo-delete-button {
+    color: red; /* Adjust color based on the delete icon in the image */
+}
+
+.todo-checkbox {
+    color: #333; /* Adjust color if the checkbox in the image has a different one */
+}
