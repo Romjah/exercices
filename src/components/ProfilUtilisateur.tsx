@@ -48,7 +48,7 @@ const ProfilUtilisateur: React.FC = () => {
             
             {user ? (
                 <div className="profile">
-                    <img src={user.avatar} alt="Avatar" style={{ width: '150px', borderRadius: '50%' }} />
+                    <img className="profilePic" src={user.avatar} alt="Avatar" />
                     <h1>{user.name}</h1>
                     <p>Email: {user.email}</p>
                     <NavigationTabs currentIndex={id ? parseInt(id, 10) - 1 : 0} totalProfiles={profilesData.length} />
