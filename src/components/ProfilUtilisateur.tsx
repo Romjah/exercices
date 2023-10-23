@@ -1,54 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import NavigationTabs from './NavigationTabs';
 import profilesData from '../json/profil.json';
+import '../style/ProfilUtilisateur.css';
 
 interface User {
-  name: string;
-  email: string;
-  avatar: string;
+    name: string;
+    email: string;
+    avatar: string;
 }
 
 const ProfilUtilisateur: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string>("");
-  const [currentIndex, setCurrentIndex] = useState<number>(0); // Initialiser avec 0
+    const { id } = useParams<{ id: string }>();
+    const [user, setUser] = useState<User | null>(null);
+    const [searchId, setSearchId] = useState("");
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!id) {
-      setError("ID utilisateur non spécifié dans l'URL.");
-      return;
-    }
-  
-    const index = parseInt(id, 10) - 1;
-  
-    if (!isNaN(index)) {
-      setCurrentIndex(index);
-  
-      const userProfile = profilesData[index];
-  
-      if (userProfile) {
-        setUser(userProfile);
-      } else {
-        setError("Profil non trouvé.");
-      }
-    } else {
-      setError("ID utilisateur invalide.");
-    }
-  }, [id]);
-  
-  if (error) return <p>{error}</p>;
-  if (!user) return <p>Chargement...</p>;
+    useEffect(() => {
+        if (id) {
+            const index = parseInt(id, 10) - 1;
 
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <img src={user.avatar} alt="Avatar" style={{ width: '150px', borderRadius: '50%' }} />
-      <h1>{user.name}</h1>
-      <p>Email: {user.email}</p>
-      <NavigationTabs currentIndex={currentIndex} totalProfiles={profilesData.length} />
-    </div>
-  );
+            if (!isNaN(index) && index >= 0 && index < profilesData.length) {
+                setUser(profilesData[index]);
+            } else {
+                setUser(null);
+            }
+        }
+    }, [id]);
+
+    const handleSearch = () => {
+        if (searchId) {
+            navigate(`/profil/${searchId}`);
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="searchBox">
+                <input
+                    type="number"
+                    placeholder="Entrez un ID utilisateur"
+                    value={searchId}
+                    onChange={(e) => setSearchId(e.target.value)}
+                />
+                <button onClick={handleSearch}>Rechercher</button>
+            </div>
+            
+            {user ? (
+                <div className="profile">
+                    <img src={user.avatar} alt="Avatar" style={{ width: '150px', borderRadius: '50%' }} />
+                    <h1>{user.name}</h1>
+                    <p>Email: {user.email}</p>
+                    <NavigationTabs currentIndex={id ? parseInt(id, 10) - 1 : 0} totalProfiles={profilesData.length} />
+                </div>
+            ) : (
+                <p className="errorMessage">Veuillez spécifier un ID valide.</p>
+            )}
+        </div>
+    );
 }
 
 export default ProfilUtilisateur;

@@ -43,8 +43,8 @@
     color: #ecf0f1;
 }
 
-.todo-delete-button {
-    color: #e74c3c;
+.todo-delete-button > svg {
+    color: red;
 }
 
 .todo-checkbox {
