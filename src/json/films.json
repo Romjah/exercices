@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "titre": "Inception",
+        "realisateur": "Christopher Nolan",
+        "annee": 2010
+    },
+    {
+        "id": 2,
+        "titre": "Interstellar",
+        "realisateur": "Christopher Nolan",
+        "annee": 2014
+    },
+    {
+        "id": 3,
+        "titre": "The Matrix",
+        "realisateur": "Lana Wachowski, Lilly Wachowski",
+        "annee": 1999
+    }
+]  

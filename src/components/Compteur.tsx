@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import MenuHamburger from './MenuHamburger';
+import '../style/Compteur.css';
 
 const CompteurDeClics = () => {
-  // Utilisez useState pour gérer le compteur
   const [count, setCount] = useState(0);
 
-  // Utilisez useEffect pour afficher un message quand le compteur atteint un certain nombre
   useEffect(() => {
-    if (count === 10) {
-      alert('Vous avez cliqué 10 fois!');
+    if (count === 10000) {
+      alert("Vous avez cliqué 10 000 fois!\nBravo vous n'avez pas de vie 🤣");
     }
   }, [count]);
 
+  const resetCount = () => {
+    setCount(0);
+  }
+
   return (
-    <div>
-        <MenuHamburger />
-        <div>
-            <button onClick={() => setCount(count + 1)}>Cliquez-moi</button>
-            <p>Nombre de clics: {count}</p>
-        </div>
+    <div className="cpt-container">
+        <p className="cpt-text">Nombre de clics: {count}</p>
+        <button className="cpt-btn-click" onClick={() => setCount(count + 1)}>Cliquez-moi</button>
+        <button className="cpt-btn-reset" onClick={resetCount}>Réinitialiser</button>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavigationTabs from './NavigationTabs';
+import profilesData from '../json/profil.json';
 
 interface User {
   name: string;
@@ -10,36 +11,33 @@ interface User {
 
 const ProfilUtilisateur: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<string>("");
+  const [currentIndex, setCurrentIndex] = useState<number>(0); // Initialiser avec 0
 
   useEffect(() => {
     if (!id) {
       setError("ID utilisateur non spécifié dans l'URL.");
       return;
     }
-
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('https://randomuser.me/api/');
-        const data = await response.json();
-        const fetchedUser = data.results[0];
-        
-        const userData = {
-          name: `${fetchedUser.name.first} ${fetchedUser.name.last}`,
-          email: fetchedUser.email,
-          avatar: fetchedUser.picture.large
-        };
-        setUser(userData);
-      } catch (err) {
-        setError("Erreur lors de la récupération des données de l'utilisateur.");
+  
+    const index = parseInt(id, 10) - 1;
+  
+    if (!isNaN(index)) {
+      setCurrentIndex(index);
+  
+      const userProfile = profilesData[index];
+  
+      if (userProfile) {
+        setUser(userProfile);
+      } else {
+        setError("Profil non trouvé.");
       }
-    };
-
-    fetchUserData();
+    } else {
+      setError("ID utilisateur invalide.");
+    }
   }, [id]);
-
+  
   if (error) return <p>{error}</p>;
   if (!user) return <p>Chargement...</p>;
 
@@ -48,7 +46,7 @@ const ProfilUtilisateur: React.FC = () => {
       <img src={user.avatar} alt="Avatar" style={{ width: '150px', borderRadius: '50%' }} />
       <h1>{user.name}</h1>
       <p>Email: {user.email}</p>
-      <NavigationTabs />
+      <NavigationTabs currentIndex={currentIndex} totalProfiles={profilesData.length} />
     </div>
   );
 }

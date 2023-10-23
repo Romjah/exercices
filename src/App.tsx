@@ -5,6 +5,8 @@ import CompteurDeClics from '../src/components/Compteur'
 import Home from './pages/Home';
 import './App.css';
 import ProfilUtilisateur from './components/ProfilUtilisateur';
+import ListeFilms from './components/ListeFilms';
+import MenuHamburger from './components/MenuHamburger';
 
 const App = () => {
   const [todos, setTodos] = useState<string[]>([]);
@@ -24,6 +26,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <MenuHamburger />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -32,6 +35,7 @@ const App = () => {
           />
           <Route path="/compteur" element={<CompteurDeClics />} />
           <Route path="/profil/:id" element={<ProfilUtilisateur />} />
+          <Route path="/liste_de_produit" element={<ListeFilms />} />
         </Routes>
       </header>
     </div>

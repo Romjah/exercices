@@ -1,21 +1,34 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const NavigationTabs: React.FC = () => {
-  const location = useLocation();
-  const currentID = parseInt(location.pathname.split('/')[2]);
+interface NavigationTabsProps {
+  currentIndex: number;
+  totalProfiles: number;
+}
+
+const NavigationTabs: React.FC<NavigationTabsProps> = ({ currentIndex, totalProfiles }) => {
+  const navigate = useNavigate();
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      navigate(`/profil/${currentIndex}`); // Naviguer vers l'ID précédent
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < totalProfiles - 1) {
+      navigate(`/profil/${currentIndex + 2}`); // Naviguer vers l'ID suivant
+    }
+  };
 
   return (
     <div>
-      {/* Bouton de profil précédent (diminue l'ID de 1) */}
-      <Link to={`/profil/${currentID - 1}`}>
-        <button>Profil Précédent</button>
-      </Link>
-
-      {/* Bouton de profil suivant (augmente l'ID de 1) */}
-      <Link to={`/profil/${currentID + 1}`}>
-        <button>Profil Suivant</button>
-      </Link>
+      <button disabled={currentIndex === 0} onClick={handlePrevious}>
+        Précédent
+      </button>
+      <button disabled={currentIndex === totalProfiles - 1} onClick={handleNext}>
+        Suivant
+      </button>
     </div>
   );
 };

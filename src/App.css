@@ -1,13 +1,20 @@
+/* Réinitialisation des marges et paddings par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Garantit une taille de boîte uniforme */
+}
+
 .App {
   text-align: center;
-  font-family: 'Arial', sans-serif; /* Police moderne et propre */
-  background-color: #1a1e25; /* Fond sombre */
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1e25;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-  filter: drop-shadow(0 0 10px #61dafb); /* Ombre légère pour le logo */
+  filter: drop-shadow(0 0 10px #61dafb);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,20 +31,20 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #f1f1f1; /* Un blanc cassé pour être moins agressif pour les yeux */
+  color: #f1f1f1;
 }
 
 .App-link {
   color: #61dafb;
-  text-decoration: none; /* Suppression du soulignement par défaut */
+  text-decoration: none;
   border: 1px solid #61dafb;
-  border-radius: 5px; /* Coins arrondis pour le lien */
-  transition: background-color 0.3s; /* Transition douce pour l'effet de survol */
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .App-link:hover {
-  background-color: #61dafb; /* Changement de la couleur de fond au survol */
-  color: #282c34; /* Changement de la couleur du texte au survol */
+  background-color: #61dafb;
+  color: #282c34;
 }
 
 @keyframes App-logo-spin {
@@ -49,7 +56,6 @@
   }
 }
 
-/* Ajout du style pour l'icône hamburger */
 .hamburger {
   width: 30px;
   height: 22px;
@@ -68,7 +74,6 @@
   background-color: #f1f1f1;
 }
 
-/* Style supplémentaire pour le contenu de la page Home */
 .home-title {
   font-size: 2.5em;
   margin-bottom: 20px;
