@@ -7,6 +7,7 @@ import './App.css';
 import ProfilUtilisateur from './components/ProfilUtilisateur';
 import ListeFilms from './components/ListeFilms';
 import MenuHamburger from './components/MenuHamburger';
+import RechercheFilms from './components/RechercheFilms';
 
 const App = () => {
   const [todos, setTodos] = useState<string[]>([]);
@@ -35,7 +36,8 @@ const App = () => {
           />
           <Route path="/compteur" element={<CompteurDeClics />} />
           <Route path="/profil/:id" element={<ProfilUtilisateur />} />
-          <Route path="/liste_de_produit" element={<ListeFilms />} />
+          <Route path="/liste_de_films" element={<ListeFilms />} />
+          <Route path="/recherche_de_films" element={<RechercheFilms />} />
         </Routes>
       </header>
     </div>

@@ -1,0 +1,45 @@
+.liste-films {
+    font-family: 'Roboto', sans-serif;
+    margin: 2em;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.liste-films h1 {
+    width: 100%;
+    margin-bottom: 8%;
+}
+
+.film-item {
+    flex: 0 1 calc(50% - 1em);
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 2em;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.film-item:hover {
+    transform: scale(1.03);
+}
+
+.film-item h2 {
+    margin: 0 0 10px;
+    color: #2C3E50;
+    font-weight: 600;
+}
+
+.film-item p {
+    margin: 10px 0;
+    color: #7F8C8D;
+}
+
+.film-item .realisateur {
+    font-style: italic;
+    color: #34495E;
+}
