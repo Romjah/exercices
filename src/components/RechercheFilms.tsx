@@ -62,11 +62,11 @@ const RechercheFilms: React.FC = () => {
                         {films.map((film: any) => (
                             <tr key={film.id}>
                                 <td>{film.title}</td>
-                                <td>N/A</td>
+                                <td>{film.author || "N/A"}</td> {/* Ici pour l'auteur */}
                                 <td>{film.release_date}</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
+                                <td>{film.actors?.join(', ') || "N/A"}</td> {/* Ici pour les acteurs */}
+                                <td>{film.income || "N/A"}</td>
+                                <td>{film.reviews || "N/A"}</td>
                                 <td><button onClick={() => handleDescriptionClick(film.overview)}>Description</button></td>
                             </tr>
                         ))}
@@ -75,9 +75,11 @@ const RechercheFilms: React.FC = () => {
             </div>
             {/* Popup pour la description */}
             {description && (
-                <div className="description-popup show">
-                    <p>{description}</p>
-                    <button onClick={handleCloseDescription}>Fermer</button>
+                <div className="overlay">
+                    <div className="description-popup show">
+                        <p>{description}</p>
+                        <button onClick={handleCloseDescription}>Fermer</button>
+                    </div>
                 </div>
             )}
         </div>
