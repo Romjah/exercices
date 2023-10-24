@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import '../style/RechercheFilms.module.css';
+import recherche_styles from '../style/RechercheFilms.module.css';
 
 const RechercheFilms: React.FC = () => {
     const [query, setQuery] = useState("");
@@ -12,6 +12,7 @@ const RechercheFilms: React.FC = () => {
     const fetchFilms = useCallback(async (q: string) => {
         const response = await fetch(`http://localhost:5001/search?query=${q}`);
         const data = await response.json();
+        console.log("Data reçue:", data);
         setFilms(data.results);
     }, []);
 
@@ -50,24 +51,22 @@ const RechercheFilms: React.FC = () => {
                     <thead>
                         <tr>
                             <th>Titre</th>
-                            <th>Auteur</th>
-                            <th>Date de publication</th>
-                            <th>Acteurs</th>
-                            <th>Revenu généré</th>
-                            <th>Top vente</th>
+                            <th>Langue originale</th>
+                            <th>Date de sortie</th>
+                            <th>Vote moyen</th>
+                            <th>Nombre de votes</th>
                             <th>Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {films.map((film: any) => (
-                            <tr key={film.id}>
-                                <td>{film.title}</td>
-                                <td>{film.author || "N/A"}</td> {/* Ici pour l'auteur */}
-                                <td>{film.release_date}</td>
-                                <td>{film.actors?.join(', ') || "N/A"}</td> {/* Ici pour les acteurs */}
-                                <td>{film.income || "N/A"}</td>
-                                <td>{film.reviews || "N/A"}</td>
-                                <td><button onClick={() => handleDescriptionClick(film.overview)}>Description</button></td>
+                        {films.map((movie: any) => (
+                            <tr key={movie.id}>
+                                <td>{movie.title}</td>
+                                <td>{movie.original_language}</td>
+                                <td>{movie.release_date}</td>
+                                <td>{movie.vote_average}</td>
+                                <td>{movie.vote_count}</td>
+                                <td><button onClick={() => handleDescriptionClick(movie.overview)}>Description</button></td>
                             </tr>
                         ))}
                     </tbody>

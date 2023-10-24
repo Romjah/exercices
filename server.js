@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors');  // Ajout de cette ligne
+const cors = require('cors');
 
 let fetch;
 
@@ -11,7 +11,6 @@ require('dotenv').config();
 const app = express();
 const PORT = 5001;
 
-// Utilisation du middleware CORS
 app.use(cors());
 
 app.get('/search', async (req, res) => {
