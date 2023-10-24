@@ -6,22 +6,29 @@ const RechercheFilms: React.FC = () => {
     const [query, setQuery] = useState("");
     const [films, setFilms] = useState([]);
     const [description, setDescription] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const location = useLocation();
     const navigate = useNavigate();
 
-    const fetchFilms = useCallback(async (q: string) => {
-        const response = await fetch(`http://localhost:5001/search?query=${q}`);
+    const ITEMS_PER_PAGE = 6;
+    
+    const fetchFilms = useCallback(async (q: string, page: number) => {
+        const response = await fetch(`http://localhost:5001/search?query=${q}&page=${page}`);
         const data = await response.json();
         console.log("Data reçue:", data);
         setFilms(data.results);
+        setTotalPages(Math.ceil(data.total / ITEMS_PER_PAGE)); // Assumer que l'API renvoie un total de films pour cette requête
     }, []);
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const q = searchParams.get('q');
+        const page = parseInt(searchParams.get('page') || '1', 10); // Pour la pagination
+        setCurrentPage(page); // Pour la pagination
         if (q) {
             setQuery(q);
-            fetchFilms(q);
+            fetchFilms(q, page);
         }
     }, [location.search, fetchFilms]);
 
@@ -35,6 +42,17 @@ const RechercheFilms: React.FC = () => {
 
     const handleCloseDescription = () => {
         setDescription(null);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            navigate(`/recherche_de_films?q=${query}&page=${currentPage + 1}`);
+        }
+    };
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            navigate(`/recherche_de_films?q=${query}&page=${currentPage - 1}`);
+        }
     };
 
     return (
@@ -71,6 +89,11 @@ const RechercheFilms: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="pagination-controls">
+                <button disabled={currentPage === 1} onClick={handlePreviousPage}>Page précédente</button>
+                <span>Page {currentPage} sur {totalPages}</span>
+                <button disabled={currentPage === totalPages} onClick={handleNextPage}>Page suivante</button>
             </div>
             {description && (
                 <div className="overlay">
