@@ -72,7 +72,6 @@ const RechercheFilms: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            {/* Popup pour la description */}
             {description && (
                 <div className="overlay">
                     <div className="description-popup show">

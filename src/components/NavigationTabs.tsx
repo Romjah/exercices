@@ -12,13 +12,13 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ currentIndex, totalProf
 
   const handlePrevious = () => {
     if (currentIndex > 0) {
-      navigate(`/profil/${currentIndex}`); // Naviguer vers l'ID précédent
+      navigate(`/profil/${currentIndex}`);
     }
   };
 
   const handleNext = () => {
     if (currentIndex < totalProfiles - 1) {
-      navigate(`/profil/${currentIndex + 2}`); // Naviguer vers l'ID suivant
+      navigate(`/profil/${currentIndex + 2}`);
     }
   };
 

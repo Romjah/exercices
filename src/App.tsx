@@ -12,12 +12,10 @@ import RechercheFilms from './components/RechercheFilms';
 const App = () => {
   const [todos, setTodos] = useState<string[]>([]);
 
-  // Fonction pour ajouter une tâche
   const addTodo = (newTodo: string) => {
     setTodos([...todos, newTodo]);
   };
 
-  // Fonction pour supprimer une tâche par son index
   const deleteTodo = (index: number) => {
     const updatedTodos = [...todos];
     updatedTodos.splice(index, 1);

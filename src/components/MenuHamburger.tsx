@@ -36,7 +36,6 @@ const MenuHamburger = () => {
               <ListItemText primary={`Exercice ${exercise.number}: ${exercise.name}`} />
             </ListItem>
           ))}
-          {/* Note pour l'exercice 4 qui est utilisé dans l'exercice 3 */}
           <ListItem>
             <ListItemText primary="Note: L'Exercice 4 est utilisé dans l'Exercice 3" />
           </ListItem>
