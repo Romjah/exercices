@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import recherche_styles from '../style/RechercheFilms.module.css';
+import '../style/RechercheFilms.module.css';
 
 const RechercheFilms: React.FC = () => {
     const [query, setQuery] = useState("");
