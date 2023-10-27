@@ -18,14 +18,14 @@ const RechercheFilms: React.FC = () => {
         const data = await response.json();
         console.log("Data reçue:", data);
         setFilms(data.results);
-        setTotalPages(Math.ceil(data.total / ITEMS_PER_PAGE)); // Assumer que l'API renvoie un total de films pour cette requête
+        setTotalPages(Math.ceil(data.total / ITEMS_PER_PAGE));
     }, []);
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const q = searchParams.get('q');
-        const page = parseInt(searchParams.get('page') || '1', 10); // Pour la pagination
-        setCurrentPage(page); // Pour la pagination
+        const page = parseInt(searchParams.get('page') || '1', 10);
+        setCurrentPage(page);
         if (q) {
             setQuery(q);
             fetchFilms(q, page);
