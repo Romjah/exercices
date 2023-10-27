@@ -44,3 +44,7 @@ Nul besoin de recourir à `éjecter` de manière irréfléchie. L'ensemble de po
 Vous pouvez approfondir vos connaissances en vous référant à la [documentation de Create React App](https://facebook.github.io/create-react-app/docs/getting-started).
 
 Pour maîtriser l'art ancien de React, explorez les parchemins de la [documentation React](https://reactjs.org/). Que vos aventures soient fructueuses ! 🌟📜
+
+
+Auteur:
+Romain JAHIER
